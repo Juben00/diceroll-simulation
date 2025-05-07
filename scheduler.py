@@ -27,7 +27,7 @@ class DiceSimulator:
         
         # Simulation parameters
         self.speed = speed
-        self.base_tick = 0.5  # seconds per tick at base speed
+        self.base_tick = 1.5  # seconds per tick at base speed (changed from 0.5 to 2.0)
         self.effective_tick = self.base_tick / self.speed
         self.roll_interval_ticks = max(1, math.ceil(1.0 / self.effective_tick))
         self.step_count = 0
