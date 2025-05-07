@@ -1,4 +1,4 @@
-# scheduler.py
+# dice.py
 from models import Die, Roll
 import random
 import time

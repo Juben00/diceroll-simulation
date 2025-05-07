@@ -1,4 +1,3 @@
-// static/js/main.js
 const socket = io();
 
 const canvas = document.getElementById("simulationCanvas");

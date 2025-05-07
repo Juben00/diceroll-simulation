@@ -16,7 +16,7 @@ The simulation is implemented as a web application using Flask for the backend a
 ### Main Application (app.py)
 The main application file contains the Flask web server and simulation entry points. It handles HTTP requests, manages the simulation thread, and provides status updates to the frontend.
 
-### Dice Simulator (scheduler.py)
+### Dice Simulator (dice.py)
 The dice simulator implements the logic for rolling dice and tracking statistics. It calculates theoretical probabilities and maintains frequency distributions of outcomes.
 
 ### Models (models.py)

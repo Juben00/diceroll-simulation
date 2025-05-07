@@ -1,7 +1,7 @@
 # app.py
 from flask import Flask, render_template, request, jsonify
 from flask_socketio import SocketIO
-from scheduler import DiceSimulator
+from dice import DiceSimulator
 import threading, time
 
 app = Flask(__name__)
