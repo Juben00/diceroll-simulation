@@ -1,0 +1,94 @@
+GROUP MEMBERS:
+1. RAY VINCENT D.S CONCEPCION
+2. JOEVIN C. ANSOC
+3. RANDOLF MARIE G. MARBA
+
+# Dice Roll Simulation Documentation
+
+## Project Overview
+This application simulates the rolling of multiple dice with configurable parameters. The simulation provides comprehensive visualization of dice roll outcomes, frequency distribution, and probability statistics.
+
+## System Architecture
+The simulation is implemented as a web application using Flask for the backend and HTML/JavaScript for the frontend visualization. The core components include:
+
+1. Web Server: Flask application that serves the dashboard and provides RESTful endpoints.
+2. Simulation Engine: Manages the state of the simulation, including dice and roll history.
+3. Data Models: Define the core objects used in the simulation (Die, Roll).
+4. Statistics Tracker: Records and analyzes roll outcomes and frequencies.
+
+## Components
+
+### Main Application (app.py)
+The main application file contains the Flask web server and simulation entry points. It handles HTTP requests, manages the simulation thread, and provides status updates to the frontend.
+
+### Dice Simulator (scheduler.py)
+The dice simulator implements the logic for rolling dice and tracking statistics. It calculates theoretical probabilities and maintains frequency distributions of outcomes.
+
+### Models (models.py)
+This module defines the data structures for the core simulation objects:
+- Die: Represents a single die with configurable number of sides and current value.
+- Roll: Represents a single roll event with timestamps and outcome values.
+
+## Class Relationships
+- DiceSimulator manages multiple Die objects
+- Die objects produce random values when rolled
+- Roll objects capture the state of multiple dice at a point in time
+- Statistics are aggregated from Roll history
+
+## Algorithms
+
+### Random Number Generation
+The simulation uses Python's random module to generate fair dice rolls:
+- Each die produces a random integer from 1 to the number of sides
+- The distribution is uniform (each outcome has equal probability)
+
+### Probability Calculation
+For simple cases (1-2 dice), theoretical probabilities are calculated as:
+- Single die: Each face has 1/n probability
+- Two dice: Count the ways to achieve each sum, divided by total possible outcomes
+
+### Statistics Tracking
+The system maintains several statistical measures:
+1. Total rolls count
+2. Frequency of each sum value
+3. Frequency of each individual die value
+4. Relative frequency (percentage of total)
+5. Theoretical probabilities for comparison
+
+## Configuration Options
+The simulation supports configuration of the following parameters:
+- Number of dice
+- Number of sides per die
+- Simulation speed
+
+## Usage Instructions
+1. Start the application by executing `py app.py`
+2. Access the dashboard at http://localhost:5000/
+3. Configure simulation parameters as needed (number of dice, sides per die)
+4. Use the "Roll Dice" button to manually trigger rolls
+5. Use the "Reset Statistics" button to clear accumulated data
+6. Monitor real-time statistics and roll history
+
+## Statistics and Metrics
+The simulation collects key statistics:
+- Total rolls performed
+- Frequency distribution of sum values
+- Frequency distribution of individual die values
+- Most common outcomes
+- Comparison with theoretical probabilities
+
+## Implementation Details
+
+### Concurrency
+The simulation uses Python threading library to:
+- Run the simulation in a background thread
+- Generate rolls at regular intervals
+- Synchronize updates to the frontend via SocketIO
+
+### Visual Representation
+The frontend visualization includes:
+- 3D-style dice rendering
+- Bar chart showing frequency distribution
+- Theoretical probability overlay line
+- Recent roll history display
+- Summary statistics
