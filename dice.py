@@ -56,9 +56,37 @@ class DiceSimulator:
             
             return probabilities
         
-        # For more dice, return simplified estimate
+        # For more dice, calculate proper probabilities using recursion or dynamic programming
         else:
-            return {i: 0 for i in range(self.num_dice, self.num_dice * self.sides_per_die + 1)}
+            probabilities = self._calculate_multi_dice_probabilities()
+            return probabilities
+
+    def _calculate_multi_dice_probabilities(self):
+        """Calculate theoretical probabilities for 3+ dice using dynamic programming"""
+        # Initialize table for DP approach
+        max_sum = self.num_dice * self.sides_per_die
+        # Create a table where ways[n][s] = number of ways to make sum s with n dice
+        ways = [[0 for _ in range(max_sum + 1)] for _ in range(self.num_dice + 1)]
+        
+        # Base case: 1 way to make sum 0 with 0 dice
+        ways[0][0] = 1
+        
+        # Fill the table
+        for dice in range(1, self.num_dice + 1):
+            for s in range(1, max_sum + 1):
+                # Consider all possible values for the current die
+                for face in range(1, self.sides_per_die + 1):
+                    if s - face >= 0:
+                        ways[dice][s] += ways[dice-1][s-face]
+        
+        # Calculate probabilities
+        total_outcomes = self.sides_per_die ** self.num_dice
+        probabilities = {}
+        
+        for s in range(self.num_dice, max_sum + 1):
+            probabilities[s] = ways[self.num_dice][s] / total_outcomes
+        
+        return probabilities
 
     def roll_dice(self):
         """Roll all dice and record statistics"""
