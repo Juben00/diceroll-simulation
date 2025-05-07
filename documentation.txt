@@ -1,8 +1,3 @@
-GROUP MEMBERS:
-1. RAY VINCENT D.S CONCEPCION
-2. JOEVIN C. ANSOC
-3. RANDOLF MARIE G. MARBA
-
 # Dice Roll Simulation Documentation
 
 ## Project Overview
